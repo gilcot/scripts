@@ -60,8 +60,7 @@ do
                 YesCount=$(( YesCount + 1 ))
                 if [ -n "$ShowPing" ]
                 then
-                        MyPing=$( ping -c1 "$NS_Name" | awk '/received/ {print $4}' )
-                        if [ $(( MyPing )) -gt 0 ]
+                        if ping -q -c1 "$NS_Name" >/dev/null 2>&1
                         then
                                 HostPing="YES"
                                 HasPing=$(( HasPing + 1 ))
@@ -78,8 +77,7 @@ do
 
                 if [ -n "$ShowPing" ]
                 then
-                        MyPing=$( ping -c1 "$NS_Pointer" | awk '/received/ {print $4}' )
-                        if [ $(( MyPing )) -gt 0 ]
+                        if ping -q -c1 "$NS_Pointer" >/dev/null 2>&1
                         then
                                 HostPing="YES"
                                 HasPing=$(( HasPing + 1 ))
